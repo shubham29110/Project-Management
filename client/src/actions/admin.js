@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ERRORS, ADD_PROJECT} from './types';
+import { GET_ERRORS, ADD_PROJECT,ADD_DEVELOPER} from './types';
 
 export const addProject = (project, history) => async dispatch => {
   debugger
@@ -11,6 +11,25 @@ export const addProject = (project, history) => async dispatch => {
             payload: res.data
         });
          history.push('/Projects')
+        }
+    } catch (error) {
+        dispatch({
+            type: GET_ERRORS,
+            payload: error.response.data
+        });
+    }
+}
+
+
+export const getDeveloper = (technology) => async dispatch => {
+  debugger
+    try {
+        const res= await axios.get(`/admin/get-developer?technology=${technology.technology}`)
+        if(res){
+          dispatch({
+            type: ADD_DEVELOPER,
+            payload: res.data
+        });
         }
     } catch (error) {
         dispatch({

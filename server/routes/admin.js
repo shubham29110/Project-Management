@@ -8,7 +8,7 @@ router.post('/add-project', async function(req, res) {
    const body =req.body
    const user = await User.findOne({ _id: body.id })
    const technology =await User.find({technology: {$regex:body.technology}})
-   console.log("technology"+technology)
+
    if(user){
     let project = await Project.findOne({ title: body.title })
     let newProject = new Project({
@@ -21,17 +21,27 @@ router.post('/add-project', async function(req, res) {
  let project_data = await newProject.save();
  if (project_data) {
    res.json(project_data)
-   console.log(project_data.user[0])
+   
    }
     
   }
-    
-    
-
 } catch (error) {
     console.log(error);
     throw error;
 }
 })
 
+router.get('/get-developer', async function(req, res) {
+  try {
+    var technology = req.query.technology;
+   const developer =await User.find({technology: {$regex:technology}})
+  console.log("technology"+developer)
+   if(developer){
+   res.json(developer) 
+  }
+} catch (error) {
+    console.log(error);
+    throw error;
+}
+})
 module.exports = router;

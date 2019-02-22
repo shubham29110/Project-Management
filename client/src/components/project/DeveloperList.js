@@ -8,6 +8,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Chip from '@material-ui/core/Chip';
+import ListItemText from '@material-ui/core/ListItemText';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const styles = theme => ({
   root: {
@@ -50,14 +52,7 @@ const MenuProps = {
 const names = [
   'Oliver Hansen',
   'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
+
 ];
 
 function getStyles(name, that) {
@@ -77,7 +72,6 @@ class DeveloperList extends React.Component {
   handleChange = event => {
     this.setState({ name: event.target.value });
   };
-
   handleChangeMultiple = event => {
     const { options } = event.target;
     const value = [];
@@ -92,9 +86,12 @@ class DeveloperList extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes ,admin} = this.props;
+    console.log(admin)
 
     return (
+      <div>
+      {this.props.admin.length && this.props.admin.map((developer,i )=> (
       <div className={classes.root}>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="select-multiple">Name</InputLabel>
@@ -105,58 +102,33 @@ class DeveloperList extends React.Component {
             input={<Input id="select-multiple" />}
             MenuProps={MenuProps}
           >
-            {names.map(name => (
-              <MenuItem key={name} value={name} style={getStyles(name, this)}>
-                {name}
+         
+              <MenuItem key={developer.name} value={developer.name} style={getStyles(developer.name, this)}>
+               {developer.name}
               </MenuItem>
-            ))}
+           
           </Select>
         </FormControl>
-      
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="select-multiple-chip">Chip</InputLabel>
+          <InputLabel htmlFor="select-multiple-checkbox">Tag</InputLabel>
           <Select
             multiple
             value={this.state.name}
             onChange={this.handleChange}
-            input={<Input id="select-multiple-chip" />}
-            renderValue={selected => (
-              <div className={classes.chips}>
-                {selected.map(value => (
-                  <Chip key={value} label={value} className={classes.chip} />
-                ))}
-              </div>
-            )}
+            input={<Input id="select-multiple-checkbox" />}
+            renderValue={selected => selected.join(', ')}
             MenuProps={MenuProps}
           >
-            {names.map(name => (
-              <MenuItem key={name} value={name} style={getStyles(name, this)}>
-                {name}
+            
+              <MenuItem key={developer.name} value={developer.name}>
+                <Checkbox checked={this.state.name.indexOf(developer.name) > -1} />
+                <ListItemText primary={developer.name} />
               </MenuItem>
-            ))}
+          
           </Select>
         </FormControl>
-
-        <FormControl className={classes.formControl}>
-          <InputLabel shrink htmlFor="select-multiple-native">
-            Native
-          </InputLabel>
-          <Select
-            multiple
-            native
-            value={this.state.name}
-            onChange={this.handleChangeMultiple}
-            inputProps={{
-              id: 'select-multiple-native',
-            }}
-          >
-            {names.map(name => (
-              <option key={name} value={name}>
-                {name}
-              </option>
-            ))}
-          </Select>
-        </FormControl>
+      </div>
+      ))}
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { Paper, withStyles, Grid, TextField, Button } from '@material-ui/core';
-import DeveloperList from './DeveloperList'
+import DeveloperList from '../../containers/admin/developerList'
 
 const styles = theme => ({
   container: {
@@ -37,7 +37,27 @@ handleInputChange = (e) => {
   this.setState({
       [e.target.name]: e.target.value
   })
+  if(e.target.name==='technology'){
+    const technology={
+      technology: this.state.technology,
+    }
+    this.props.getDeveloper(technology)
+  }
 }
+
+handleChange = (e) => {
+  debugger
+  this.setState({
+      [e.target.name]: e.target.value
+  })
+ if(this.state.technology){
+   const technology={
+     technology:this.state.technology
+   }
+  this.props.getDeveloper(technology)
+ }
+}
+
 
 handleSubmit =(e) => {
   e.preventDefault();
@@ -52,6 +72,10 @@ handleSubmit =(e) => {
   }
   console.log(project)
 
+    const technology={
+      technology: this.state.technology,
+    }
+    
   this.props.addProject(project, this.props.history);
 }
     render() {
@@ -110,7 +134,7 @@ handleSubmit =(e) => {
                               rows={4}
                               rowsMax={8}
                               InputLabelProps={{shrink: true,}}
-                              onChange={this.handleInputChange}
+                              onChange={this.handleChange}
                             />
                             {errors.discription && (<div className="invalid-feedback">{errors.discription}</div>)}
                             <DeveloperList />

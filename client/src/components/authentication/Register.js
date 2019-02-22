@@ -66,7 +66,7 @@ class Register extends Component {
             name: this.state.name,
             email: this.state.email,
             role:this.state.role,
-            technology:[this.state.technology],
+            technology:this.state.technology,
             password: this.state.password,
             password_confirm: this.state.password_confirm,
 

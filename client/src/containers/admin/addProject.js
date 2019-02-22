@@ -1,13 +1,15 @@
 import { connect } from 'react-redux';
-import { addProject } from '../../actions/admin';
+import { addProject,getDeveloper } from '../../actions/admin';
 import AddProject from '../../components/project/AddProject'
 
 const mapDispatchToProps={
-  addProject
+  addProject,
+  getDeveloper
 }
 const mapStateToProps = (state) => ({
   errors: state.errors,
-  auth:state.auth
+  auth:state.auth,
+  admin:state.admin
 })
 
 export  default connect(mapStateToProps,mapDispatchToProps )(AddProject)
