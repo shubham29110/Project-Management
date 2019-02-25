@@ -163,7 +163,7 @@ class AdminHome extends React.Component {
           <Divider />
           <List>
             {['Add-Project', 'Projects', 'Developers', 'Invite'].map((text, index) => (
-              <Link to={`/${text}`}>
+              <Link key={index}to={`/${text}`}>
               <ListItem button key={text}>
                 <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                 <ListItemText primary={text} />

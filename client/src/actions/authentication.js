@@ -4,7 +4,6 @@ import setAuthToken from '../setAuthToken';
 import jwt_decode from 'jwt-decode';
 
 export const registerUser = (user, history) => async dispatch => {
-    debugger
     try {
         const res= await axios.post('/api/users/register', user)
        
@@ -20,7 +19,6 @@ export const registerUser = (user, history) => async dispatch => {
 }
 
 export const loginUser =  (user) =>async dispatch => {
-    debugger
    try {
     const res =await axios.post('/api/users/login', user)
     if(res){
@@ -40,7 +38,6 @@ export const loginUser =  (user) =>async dispatch => {
 }
 
 export const setCurrentUser = decoded => {
-    debugger
     return {
         type: SET_CURRENT_USER,
         payload: decoded

@@ -34,8 +34,9 @@ router.post('/add-project', async function(req, res) {
 router.get('/get-developer', async function(req, res) {
   try {
     var technology = req.query.technology;
+    console.log("technology"+technology)
    const developer =await User.find({technology: {$regex:technology}})
-  console.log("technology"+developer)
+  
    if(developer){
    res.json(developer) 
   }

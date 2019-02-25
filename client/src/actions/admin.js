@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ERRORS, ADD_PROJECT,ADD_DEVELOPER} from './types';
+import { GET_ERRORS, ADD_PROJECT,ADD_DEVELOPER_LIST} from './types';
 
 export const addProject = (project, history) => async dispatch => {
   debugger
@@ -27,7 +27,7 @@ export const getDeveloper = (technology) => async dispatch => {
         const res= await axios.get(`/admin/get-developer?technology=${technology.technology}`)
         if(res){
           dispatch({
-            type: ADD_DEVELOPER,
+            type: ADD_DEVELOPER_LIST,
             payload: res.data
         });
         }

@@ -1,7 +1,9 @@
+
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { Paper, withStyles, Grid, TextField, Button } from '@material-ui/core';
 import DeveloperList from '../../containers/admin/developerList'
+import TechList from '../../containers/technologyList/techList'
 
 const styles = theme => ({
   container: {
@@ -27,32 +29,26 @@ const styles = theme => ({
         title: '',
         technology: '',
         date:'',
+        developer:[],
         discription: '',
         errors: {}
     }
 }
 
 handleInputChange = (e) => {
-  debugger
   this.setState({
       [e.target.name]: e.target.value
   })
-  if(e.target.name==='technology'){
-    const technology={
-      technology: this.state.technology,
-    }
-    this.props.getDeveloper(technology)
-  }
+
 }
 
 handleChange = (e) => {
-  debugger
   this.setState({
       [e.target.name]: e.target.value
   })
- if(this.state.technology){
+ if(this.props.technology){
    const technology={
-     technology:this.state.technology
+     technology:this.props.technology
    }
   this.props.getDeveloper(technology)
  }
@@ -65,16 +61,13 @@ handleSubmit =(e) => {
   const project = {
     title: this.state.title,
     date: new Date().toLocaleString(),
-    technology: this.state.technology,
+    technology: this.props.technology,
+    developer:this.props.developer,
     discription: this.state.discription,
     id:this.props.auth.user.id
 
   }
   console.log(project)
-
-    const technology={
-      technology: this.state.technology,
-    }
     
   this.props.addProject(project, this.props.history);
 }
@@ -102,23 +95,7 @@ handleSubmit =(e) => {
                             onChange={this.handleInputChange}
                             />
                             {errors.title && (<div className="invalid-feedback">{errors.title}</div>)}
-                        
-                            <TextField
-                              name="technology"
-                              label="Technology"
-                              style={{ margin: 8 }}
-                              placeholder="Technology"
-                              value={technology}
-                              helperText="Please provide Project Technology"
-                              fullWidth
-                              margin="normal"
-                              variant="outlined"
-                              className={classnames( {'is-invalid': errors.technology })}
-                              InputLabelProps={{ shrink: true, }}
-                              onChange={this.handleInputChange}
-                            />
-                            {errors.technology && (<div className="invalid-feedback">{errors.technology}</div>)}
-
+                            <TechList />
                             <TextField
                               name="discription"
                               label="Discription"

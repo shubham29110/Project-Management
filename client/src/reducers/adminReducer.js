@@ -1,21 +1,21 @@
-import { ADD_PROJECT,ADD_DEVELOPER } from '../actions/types';
+import { ADD_PROJECT,ADD_DEVELOPER_LIST } from '../actions/types';
 import isEmpty from '../helper/is-empty';
 
 const initialState = {
     projectAdded: false,
     project: {},
-    developerAdded: false,
-    developer:{}
+    developerListAdded: false,
+    developerList:{}
 }
 
 export default function(state = initialState, action ) {
     switch(action.type) {
-        case ADD_DEVELOPER:
+        case ADD_DEVELOPER_LIST:
         debugger
             return {
                 ...state,
-                developerAdded: !isEmpty(action.payload),
-                developer: action.payload
+                developerListAdded: !isEmpty(action.payload),
+                developerList: action.payload
             }
         case ADD_PROJECT:
         debugger

@@ -7,6 +7,7 @@ import { Face, Fingerprint ,AlternateEmail,PermIdentity,LaptopWindows} from '@ma
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
+import TechList from '../../containers/technologyList/techList'
 
 
 const styles = theme => ({
@@ -40,7 +41,6 @@ class Register extends Component {
     }
 
     handleInputChange =(e)=> {
-        debugger
         this.setState({
             [e.target.name]: e.target.value,
             
@@ -61,21 +61,23 @@ class Register extends Component {
 
     handleSubmit=(e)=> {
         e.preventDefault();
-        debugger
-        const user = {
-            name: this.state.name,
-            email: this.state.email,
-            role:this.state.role,
-            technology:this.state.technology,
-            password: this.state.password,
-            password_confirm: this.state.password_confirm,
-
+        if(this.props.technology){
+            const user = {
+                name: this.state.name,
+                email: this.state.email,
+                role:this.state.role,
+                technology:this.props.technology,
+                password: this.state.password,
+                password_confirm: this.state.password_confirm,
+    
+            }
+            console.log("user",user)
+            this.props.registerUser(user, this.props.history);
         }
-        console.log("user",user)
-        this.props.registerUser(user, this.props.history);
+     
     }
 
-    componentWillReceiveProps(nextProps) {
+   async componentWillReceiveProps(nextProps) {
         if(nextProps.auth.isAuthenticated) {
             this.props.history.push('/')
         }
@@ -158,10 +160,26 @@ class Register extends Component {
                             control={<Radio color="primary" />}
                             label="Developer" />
                          </RadioGroup>
-                       
                             {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
                         </Grid>
                     </Grid>
+
+                           <Grid hidden={hide} container spacing={8} alignItems="flex-end">
+                        <Grid style={{paddingBottom:'10px'}} item>
+                            <LaptopWindows />
+                        </Grid>
+                        <Grid item md={true} sm={true} xs={true}>
+                            <div name="technology" 
+                            className={classnames( {
+                                        'is-invalid': errors.name
+                                        })}
+                            fullWidth autoFocus  >
+                            <TechList />
+                            </div>
+                            {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
+                        </Grid>
+                    </Grid>
+                    
                     <Grid hidden={hide} container spacing={8} alignItems="flex-end">
                         <Grid item>
                             <LaptopWindows />

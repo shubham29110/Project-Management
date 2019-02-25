@@ -9,7 +9,9 @@ const mapDispatchToProps={
 const mapStateToProps = (state) => ({
   errors: state.errors,
   auth:state.auth,
-  admin:state.admin
+  admin:state.admin.developer,
+  technology:state.project.technology,
+  developer:state.project.developer
 })
 
 export  default connect(mapStateToProps,mapDispatchToProps )(AddProject)

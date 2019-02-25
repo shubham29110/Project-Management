@@ -10,6 +10,7 @@ import Select from '@material-ui/core/Select';
 import Chip from '@material-ui/core/Chip';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
+import { List, ListItem } from "@material-ui/core";
 
 const styles = theme => ({
   root: {
@@ -49,11 +50,6 @@ const MenuProps = {
   },
 };
 
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-
-];
 
 function getStyles(name, that) {
   return {
@@ -66,54 +62,34 @@ function getStyles(name, that) {
 
 class DeveloperList extends React.Component {
   state = {
-    name: [],
+    developer: [],
   };
 
   handleChange = event => {
-    this.setState({ name: event.target.value });
-  };
-  handleChangeMultiple = event => {
-    const { options } = event.target;
-    const value = [];
-    for (let i = 0, l = options.length; i < l; i += 1) {
-      if (options[i].selected) {
-        value.push(options[i].value);
-      }
-    }
-    this.setState({
-      name: value,
-    });
+    this.setState({ developer: event.target.value });
   };
 
+  componentDidUpdate(){
+    debugger
+    if(this.state.developer.length>0){
+      this.props.addCorrespondingDeveloper(this.state.developer)
+      console.log('developer',this.state.developer)
+    }
+  }
+
   render() {
-    const { classes ,admin} = this.props;
-    console.log(admin)
+    const { classes ,developerList} = this.props;
+
 
     return (
       <div>
-      {this.props.admin.length && this.props.admin.map((developer,i )=> (
-      <div className={classes.root}>
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="select-multiple">Name</InputLabel>
-          <Select 
-            multiple
-            value={this.state.name}
-            onChange={this.handleChange}
-            input={<Input id="select-multiple" />}
-            MenuProps={MenuProps}
-          >
-         
-              <MenuItem key={developer.name} value={developer.name} style={getStyles(developer.name, this)}>
-               {developer.name}
-              </MenuItem>
-           
-          </Select>
-        </FormControl>
+      {developerList.length && developerList.map((developer,i )=> (
+      <div key={i} className={classes.root}>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="select-multiple-checkbox">Tag</InputLabel>
           <Select
             multiple
-            value={this.state.name}
+            value={this.state.developer}
             onChange={this.handleChange}
             input={<Input id="select-multiple-checkbox" />}
             renderValue={selected => selected.join(', ')}
@@ -121,7 +97,7 @@ class DeveloperList extends React.Component {
           >
             
               <MenuItem key={developer.name} value={developer.name}>
-                <Checkbox checked={this.state.name.indexOf(developer.name) > -1} />
+                <Checkbox checked={this.state.developer.indexOf(developer.name) > -1} />
                 <ListItemText primary={developer.name} />
               </MenuItem>
           
@@ -134,8 +110,5 @@ class DeveloperList extends React.Component {
   }
 }
 
-DeveloperList.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles, { withTheme: true })(DeveloperList);

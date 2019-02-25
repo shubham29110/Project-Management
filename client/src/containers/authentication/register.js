@@ -7,6 +7,7 @@ const mapDispatchToProps={
 }
 const mapStateToProps = state => ({
   auth: state.auth,
+  technology:state.project.technology,
   errors: state.errors
 });
 
