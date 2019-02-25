@@ -23,8 +23,8 @@ export const addProject = (project, history) => async dispatch => {
 
 export const getDeveloper = (technology) => async dispatch => {
   debugger
-    try {
-        const res= await axios.get(`/admin/get-developer?technology=${technology.technology}`)
+    try { 
+        const res= await axios.post(`/admin/get-developer`, technology.technology )
         if(res){
           dispatch({
             type: ADD_DEVELOPER_LIST,

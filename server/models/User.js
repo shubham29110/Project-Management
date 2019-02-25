@@ -16,8 +16,7 @@ const UserSchema = new Schema({
         required: true
     },
     technology:{
-        default:null,
-        type: String,
+        type: Array,
     
     },
     password: {

@@ -27,7 +27,6 @@ const styles = theme => ({
     super(props);
     this.state = {
         title: '',
-        technology: '',
         date:'',
         developer:[],
         discription: '',

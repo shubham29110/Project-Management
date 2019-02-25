@@ -1,0 +1,13 @@
+{
+  "TRANSPORTER":{
+    "SERVICE":"smtp.gmail.com",
+    "AUTH": {
+        "USER": "stiwari@bestpeers.com",
+        "PASS": ""
+    }
+
+  },
+  "MAIL_OPTIONS":{
+    "FROM":"stiwari@bestpeers.com"
+    }
+}

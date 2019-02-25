@@ -34,7 +34,7 @@ try {
             email: req.body.email,
             password: req.body.password,
             role:req.body.role,
-            technology:[req.body.technology],
+            technology:req.body.technology,
             avatar
         });
         
@@ -45,8 +45,7 @@ try {
                            if(userData) {
                             res.json(userData)
                            }
-                                
-                            
+                        console.log('userData'+userData)        
                     }
 } catch (error) {
     if(error) console.error('There was an error', error);
