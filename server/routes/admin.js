@@ -6,6 +6,7 @@ const Sender = require("../config/email/sender")
 const SendMail = require("../config/email/sendingMail")
 const Project = require('../models/project');
 const User = require('../models/User')
+var nodemailer = require('nodemailer');
 
 router.post('/add-project', async function(req, res) {
   try {
@@ -26,7 +27,7 @@ router.post('/add-project', async function(req, res) {
             to: "stiwari@bestpeers.com",
             from: Sender.MAIL_OPTIONS.FROM,
             subject: MailUtil.project_invitation_mail.subject,
-            body: MailUtil.project_invitation_mail.header + MailUtil.project_invitation_mail.middle +
+            body: MailUtil.project_invitation_mail.header+'\n\n' + MailUtil.project_invitation_mail.middle +
                 'https://' + req.headers.host + '/admin/projects/' + usertoken + '\n\n' +
                 MailUtil.project_invitation_mail.footer
   };

@@ -4,6 +4,7 @@ const config = require('./sender');
 
 var transporter = nodemailer.createTransport({
     service: config.TRANSPORTER.SERVICE,
+
     auth: {
         user: config.TRANSPORTER.AUTH.USER,
         pass: config.TRANSPORTER.AUTH.PASS,
