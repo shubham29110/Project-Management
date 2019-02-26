@@ -1,6 +1,8 @@
 import React from 'react';
 import AddProject from '../containers/admin/addProject'
 import ProjectList from '../containers/admin/projectList'
+import TotalDevelopers from '../containers/developer/developer'
+
 export const routes =
                     [
                       {
@@ -22,8 +24,7 @@ export const routes =
                       {
                         path: "/Developers",
                         exact: false,
-                        sidebar: () => <div>developers!</div>,
-                        component: () => <h2>developers</h2>
+                        component: TotalDevelopers
                       },
                       {
                         path: "/Invite",

@@ -1,11 +1,13 @@
-import { ADD_DEVELOPER_LIST ,ADD_DEVELOPER} from '../actions/types';
+import { ADD_DEVELOPER_LIST ,ADD_DEVELOPER,ADD_ALL_DEVELOPER} from '../actions/types';
 import isEmpty from '../helper/is-empty';
 
 const initialState = {
     developerAdded:false,
     developer:[],
     developerListAdded: false,
-    developerList:{}
+    developerList:{},
+    totalDeveloperAdded:false,
+    totalDeveloper:{}
 }
 
 export default function(state = initialState, action ) {
@@ -16,6 +18,14 @@ export default function(state = initialState, action ) {
                 ...state,
                 developerListAdded: !isEmpty(action.payload),
                 developerList: action.payload
+            }
+
+            case ADD_ALL_DEVELOPER:
+        debugger
+            return {
+                ...state,
+                totalDeveloperAdded: !isEmpty(action.payload),
+                totalDeveloper: action.payload
             }
             case ADD_DEVELOPER:
             debugger

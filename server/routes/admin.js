@@ -6,7 +6,7 @@ const Sender = require("../config/email/sender")
 const SendMail = require("../config/email/sendingMail")
 const Project = require('../models/project');
 const User = require('../models/User')
-var nodemailer = require('nodemailer');
+
 
 router.post('/add-project', async function(req, res) {
   try {
@@ -80,6 +80,21 @@ router.get('/project-list',async function(req, res) {
    console.log(projectList)
    if(projectList){
    res.json(projectList) 
+  }
+} catch (error) {
+    console.log(error);
+    throw error;
+}
+})
+
+
+router.get('/developer-list',async function(req, res) {
+  try {
+   const developers =await User.find({role:"Developer"})
+
+   console.log('developers'+developers)
+   if(developers){
+   res.json(developers) 
   }
 } catch (error) {
     console.log(error);
