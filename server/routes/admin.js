@@ -71,4 +71,19 @@ router.post('/get-developer', async function(req, res) {
     throw error;
 }
 })
+
+
+router.get('/project-list',async function(req, res) {
+  try {
+   const projectList =await Project.find()
+
+   console.log(projectList)
+   if(projectList){
+   res.json(projectList) 
+  }
+} catch (error) {
+    console.log(error);
+    throw error;
+}
+})
 module.exports = router;

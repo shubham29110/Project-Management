@@ -1,5 +1,6 @@
 import React from 'react';
 import AddProject from '../containers/admin/addProject'
+import ProjectList from '../containers/admin/projectList'
 export const routes =
                     [
                       {
@@ -16,8 +17,7 @@ export const routes =
                       {
                         path: "/Projects",
                         exact: false,
-                        sidebar: () => <div>projects!</div>,
-                        component: () => <h2>projects</h2>
+                        component: ProjectList
                       },
                       {
                         path: "/Developers",

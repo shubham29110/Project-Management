@@ -38,40 +38,38 @@ handleInputChange = (e) => {
   this.setState({
       [e.target.name]: e.target.value
   })
-
+  if(this.props.technology){
+    const technology={
+      technology:this.props.technology
+    }
+   this.props.getDeveloper(technology)
+  }
 }
 
-handleChange = (e) => {
-  this.setState({
-      [e.target.name]: e.target.value
-  })
- if(this.props.technology){
-   const technology={
-     technology:this.props.technology
-   }
-  this.props.getDeveloper(technology)
- }
-}
+
 
 
 handleSubmit =(e) => {
   e.preventDefault();
   debugger
-  const project = {
-    title: this.state.title,
-    date: new Date().toLocaleString(),
-    technology: this.props.technology,
-    developer:this.props.developer,
-    discription: this.state.discription,
-    id:this.props.auth.user.id
-
+  if(this.props.developer){
+    const project = {
+      title: this.state.title,
+      date: new Date().toLocaleString(),
+      technology: this.props.technology,
+      developer:this.props.developer,
+      discription: this.state.discription,
+      id:this.props.auth.user.id
+  
+    }
+    console.log(project)
+      
+    this.props.addProject(project, this.props.history);
   }
-  console.log(project)
-    
-  this.props.addProject(project, this.props.history);
+
 }
     render() {
-            const { errors,title,technology,discription } = this.state;
+            const { errors,title,discription } = this.state;
             const {classes} = this.props
         return (
           <Paper className={classes.padding}
@@ -110,9 +108,10 @@ handleSubmit =(e) => {
                               rows={4}
                               rowsMax={8}
                               InputLabelProps={{shrink: true,}}
-                              onChange={this.handleChange}
+                              onChange={this.handleInputChange}
                             />
                             {errors.discription && (<div className="invalid-feedback">{errors.discription}</div>)}
+                            
                             <DeveloperList />
                            
                     <Grid container justify="center" style={{ marginBottom: '10px' }}>
@@ -121,10 +120,9 @@ handleSubmit =(e) => {
                               variant="outlined" 
                               color="primary" 
                               style={{ textTransform: "none" }}>
-                              AddProject
+                              Add Project
                         </Button>
                     </Grid>
-                    
             </form>
             </Paper>
             

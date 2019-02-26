@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import {addCorrespondingDeveloper} from '../../actions/project'
+import {addCorrespondingDeveloper} from '../../actions/developer'
 import DeveloperList from '../../components/project/DeveloperList'
 
 const mapDispatchToProps={
@@ -7,7 +7,7 @@ const mapDispatchToProps={
 }
 const mapStateToProps = (state) => ({
   errors: state.errors,
-  developerList:state.admin.developerList,
+  developerList:state.developer.developerList,
   //developer:state.project.developer
 })
 

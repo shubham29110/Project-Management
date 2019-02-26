@@ -1,10 +1,13 @@
-import { ADD_TECHNOLOGY ,ADD_DEVELOPER} from '../actions/types';
+import { ADD_TECHNOLOGY, ADD_PROJECT,ADD_DEVELOPER,ADD_PROJECT_LIST} from '../actions/types';
 import isEmpty from '../helper/is-empty';
 
 const initialState = {
     technologyAdded: false,
     technology:[],
-    developer:[],
+    projecttAdded: false,
+    project: {},
+    projectListAdded:false,
+    projectList:{}
 }
 
 export default function(state = initialState, action ) {
@@ -16,13 +19,21 @@ export default function(state = initialState, action ) {
                 technologyAdded: !isEmpty(action.payload),
                 technology: action.payload
             }
-        case ADD_DEVELOPER:
-        debugger
-            return {
-                ...state,
-                technologyAdded: !isEmpty(action.payload),
-                developer: action.payload
-            }
+       
+            case ADD_PROJECT:
+            debugger
+                return {
+                    ...state,
+                    projectAdded: !isEmpty(action.payload),
+                    project: action.payload
+                }
+            case ADD_PROJECT_LIST:
+            debugger
+                return {
+                    ...state,
+                    projectListAdded: !isEmpty(action.payload),
+                    projectList: action.payload
+                }
         default: 
             return state;
     }

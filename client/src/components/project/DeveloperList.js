@@ -7,16 +7,14 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Chip from '@material-ui/core/Chip';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
-import { List, ListItem } from "@material-ui/core";
+
 
 const styles = theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    borderTop: '1px solid white'
   },
 
 
@@ -79,12 +77,14 @@ class DeveloperList extends React.Component {
 
   render() {
     const { classes ,developerList} = this.props;
-
-
+    developerList.length &&developerList.map((developer )=> {
+      console.log('developer',developer)
+    })
+    console.log(developerList)
     return (
-      <div>
-      {developerList.length && developerList.map((developer,i )=> (
-      <div key={i} className={classes.root}>
+      <div className='developerList' >
+      {developerList.length && developerList.map((developer )=> (
+      <div className={classes.root}>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="select-multiple-checkbox">Tag</InputLabel>
           <Select
