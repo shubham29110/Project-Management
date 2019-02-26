@@ -1,4 +1,4 @@
-/node_modules
-/config/email/sender
+node_modules
+config/email/sender.json
 
 
