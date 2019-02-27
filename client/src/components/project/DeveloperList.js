@@ -83,7 +83,7 @@ class DeveloperList extends React.Component {
     console.log(developerList)
     return (
       <div className='developerList' >
-      {developerList.length && developerList.map((developer )=> (
+
       <div className={classes.root}>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="select-multiple-checkbox">Tag</InputLabel>
@@ -95,16 +95,16 @@ class DeveloperList extends React.Component {
             renderValue={selected => selected.join(', ')}
             MenuProps={MenuProps}
           >
-            
+          {developerList.length && developerList.map((developer )=> (
               <MenuItem key={developer.name} value={developer.name}>
                 <Checkbox checked={this.state.developer.indexOf(developer.name) > -1} />
                 <ListItemText primary={developer.name} />
               </MenuItem>
-          
+              ))}
           </Select>
         </FormControl>
       </div>
-      ))}
+     
       </div>
     );
   }

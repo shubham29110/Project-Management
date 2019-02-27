@@ -6,6 +6,7 @@ const config = require('./db');
 
 const users = require('./routes/authentication'); 
 const admin = require('./routes/admin'); 
+const developer = require('./routes/developer'); 
 
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
     () => {console.log('Database is connected') },
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 
 app.use('/api/users', users);
 app.use('/admin', admin);
+app.use('/',developer)
 
 app.get('/', function(req, res) {
     res.send('hello');
