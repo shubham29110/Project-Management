@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { Paper, withStyles, Grid, TextField, Button } from '@material-ui/core';
-import DeveloperList from '../../containers/admin/developerList'
+import DeveloperList from '../../containers/project/developerList'
 import TechList from '../../containers/technologyList/techList'
 
 const styles = theme => ({

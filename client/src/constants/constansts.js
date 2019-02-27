@@ -1,6 +1,6 @@
 import React from 'react';
-import AddProject from '../containers/admin/addProject'
-import ProjectList from '../containers/admin/projectList'
+import AddProject from '../containers/project/addProject'
+import ProjectList from '../containers/project/projectList'
 import TotalDevelopers from '../containers/developer/developer'
 
 export const routes =
