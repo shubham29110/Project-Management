@@ -10,13 +10,10 @@ const validateLoginInput = require('../validation/login');
 const User = require('../models/User');
 
 router.post('/register', async function(req, res) {
-console.log(req.body)
     const { errors, isValid } = validateRegisterInput(req.body);
-
     if(!isValid) {
         return res.status(400).json(errors);
     }
-
 try {
     const user=  await User.findOne({email: req.body.email})
     if(user) {
@@ -48,24 +45,19 @@ try {
                         console.log('userData'+userData)        
                     }
 } catch (error) {
-    if(error) console.error('There was an error', error);
-}
+            if(error) console.error('There was an error', error);
+        }
 });
 
 router.post('/login', async (req, res) => {
-
     const { errors, isValid } = validateLoginInput(req.body);
-
     if(!isValid) {
         return res.status(400).json(errors);
-    }
-
-   
-try {
+    } 
+    try {
     const email = req.body.email;
-    const password = req.body.password;  
-
-   const user= await User.findOne({email})
+    const password = req.body.password; 
+    const user= await User.findOne({email})
         if(!user) {
             errors.email = 'User not found'
             return res.status(404).json(errors);
@@ -79,20 +71,20 @@ try {
                             email:user.email,
                             avatar: user.avatar
                         }
-                const token =await jwt.sign(payload, 'secret', {  expiresIn: 3600 })
+                    const token =await jwt.sign(payload, 'secret', {  expiresIn: 3600 })
                                 res.json({
                                     success: true,
                                     token: `Bearer ${token}`
                                 });
                             }
                     else {
-                        errors.password = 'Incorrect Password';
-                        return res.status(400).json(errors);
+                            errors.password = 'Incorrect Password';
+                            return res.status(400).json(errors);
                     }
              
-} catch (error) {
-    if(error) console.error('There is some error ', error);
-}
+    } catch (error) {
+                if(error) console.error('There is some error ', error);
+        }
 });
 
 router.get('/me', passport.authenticate('jwt', { session: false }), (req, res) => {

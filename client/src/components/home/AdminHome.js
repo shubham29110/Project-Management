@@ -161,6 +161,7 @@ class AdminHome extends React.Component {
           </div>
         
           <Divider />
+          {auth.user.role=='Admin'&&
           <List>
             {['Add-Project', 'Projects', 'Developers', 'Invite'].map((text, index) => (
               <Link key={index}to={`/${text}`}>
@@ -171,6 +172,20 @@ class AdminHome extends React.Component {
               </Link>
             ))}
           </List>
+          }
+
+          {auth.user.role=='Developer'&&
+          <List>
+            {[  'Developer','Projects', 'Tasks'].map((text, index) => (
+              <Link key={index}to={`/${text}`}>
+              <ListItem button key={text}>
+                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+              </Link>
+            ))}
+          </List>
+          }
         </Drawer>
         <main
           className={classNames(classes.content, {

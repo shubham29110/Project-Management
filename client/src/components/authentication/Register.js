@@ -179,23 +179,6 @@ class Register extends Component {
                             {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
                         </Grid>
                     </Grid>
-                    
-                    <Grid hidden={hide} container spacing={8} alignItems="flex-end">
-                        <Grid item>
-                            <LaptopWindows />
-                        </Grid>
-                        <Grid item md={true} sm={true} xs={true}>
-                            <TextField name="technology" 
-                            label="Technology" 
-                            value={technology} 
-                            onChange={this.handleInputChange} 
-                            className={classnames( {
-                                        'is-invalid': errors.name
-                                        })}
-                            fullWidth autoFocus  />
-                            {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
-                        </Grid>
-                    </Grid>
                     <Grid container spacing={8} alignItems="flex-end">
                         <Grid item>
                             <Fingerprint />

@@ -92,6 +92,8 @@ handleSubmit =(e) => {
                             onChange={this.handleInputChange}
                             />
                             {errors.title && (<div className="invalid-feedback">{errors.title}</div>)}
+                           
+
                             <TechList />
                             <TextField
                               name="discription"
@@ -113,6 +115,7 @@ handleSubmit =(e) => {
                             {errors.discription && (<div className="invalid-feedback">{errors.discription}</div>)}
                             
                             <DeveloperList />
+                          
                            
                     <Grid container justify="center" style={{ marginBottom: '10px' }}>
                         <Button 

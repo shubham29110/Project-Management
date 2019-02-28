@@ -40,7 +40,7 @@ class TotalDevelopers extends React.Component {
         <TableHead>
           <TableRow>
             <TableCell>Name</TableCell>
-            <TableCell align="right">Emai-Address</TableCell>
+            <TableCell align="right">Email-Address</TableCell>
             <TableCell align="right">Role</TableCell>
             <TableCell align="right">Technologies</TableCell>
          
@@ -50,12 +50,12 @@ class TotalDevelopers extends React.Component {
         {totalDevelopers.length && totalDevelopers.map((list)=>(
             <TableRow key={list.id}>
               <TableCell component="th" scope="row">
-                {list.name}
+                {list.name }
               </TableCell>
               <TableCell align="right">{list.email}</TableCell>
               <TableCell align="right">
                 {list.role}</TableCell>
-              <TableCell align="right">{list.technology}</TableCell>
+              <TableCell align="right">{list.technology+'\n'}</TableCell>
             </TableRow>
             ))}
         </TableBody>

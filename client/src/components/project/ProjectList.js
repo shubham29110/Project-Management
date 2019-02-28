@@ -37,8 +37,8 @@ class ProjectList extends React.Component {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell>Title</TableCell>
-            <TableCell align="right">Date</TableCell>
+            <TableCell>Project Name</TableCell>
+            <TableCell align="right">Date and Time</TableCell>
             <TableCell align="right">Technologies</TableCell>
             <TableCell align="right">Developer</TableCell>
             <TableCell align="right">Confirmation</TableCell>
@@ -53,8 +53,8 @@ class ProjectList extends React.Component {
               <TableCell align="right">{list.date}</TableCell>
               <TableCell align="right"
                renderValue={selected => selected.join(', ')}>
-                {list.technology}</TableCell>
-              <TableCell align="right">{list.developer}</TableCell>
+                {list.technology+'\n'}</TableCell>
+              <TableCell align="right">{list.developer+'\n'}</TableCell>
               <TableCell align="right">{list.confirmation.toString()}</TableCell>
             </TableRow>
             ))}

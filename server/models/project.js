@@ -18,7 +18,7 @@ const ProjectSchema = Schema({
             required: true 
             },
     developer:{
-                type :String,
+                type :Array,
                 required: true 
             },
     developerToken:{

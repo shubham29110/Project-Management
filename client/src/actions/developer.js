@@ -21,7 +21,7 @@ export const getDeveloper = (technology) => async dispatch => {
     }
 }
 
-export const addCorrespondingDeveloper = (developer) => async dispatch => {
+export const addCorrespondingDeveloper = (developer,) => async dispatch => {
   debugger
     try {
         if(developer){
