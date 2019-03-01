@@ -1,4 +1,4 @@
-import { ADD_TECHNOLOGY, ADD_PROJECT,ADD_DEVELOPER,ADD_PROJECT_LIST} from '../actions/types';
+import { ADD_TECHNOLOGY, ADD_PROJECT,ADD_PROJECT_LIST} from '../actions/types';
 import isEmpty from '../helper/is-empty';
 
 const initialState = {

@@ -7,7 +7,7 @@ const mapDispatchToProps={
 }
 const mapStateToProps = (state) => ({
   errors: state.errors,
-  totalDevelopers:state.developer.totalDeveloper
+  totalDevelopers:state.developer.totalDeveloper,
 })
 
 export  default connect(mapStateToProps,mapDispatchToProps )(Developers)

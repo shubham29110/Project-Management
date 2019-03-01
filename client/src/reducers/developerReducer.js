@@ -5,7 +5,7 @@ const initialState = {
     developerAdded:false,
     developer:[],
     developerListAdded: false,
-    developerList:{},
+    developerList:[],
     totalDeveloperAdded:false,
     totalDeveloper:{}
 }

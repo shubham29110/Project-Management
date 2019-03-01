@@ -6,11 +6,11 @@ import { GET_ERRORS,ADD_DEVELOPER_LIST,ADD_DEVELOPER,ADD_ALL_DEVELOPER} from './
 export const getDeveloper = (technology) => async dispatch => {
   debugger
     try { 
-        const res= await axios.post(`/admin/get-developer`, technology.technology )
-        if(res){
+        const response= await axios.post(`/admin/get-developer`, technology.technology )
+        if(response){
           dispatch({
             type: ADD_DEVELOPER_LIST,
-            payload: res.data
+            payload: response.data
         });
         }
     } catch (error) {

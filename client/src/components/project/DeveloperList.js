@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
@@ -20,8 +19,8 @@ const styles = theme => ({
 
   formControl: {
     margin: theme.spacing.unit,
-    minWidth: 700,
-    maxWidth: 900,
+    minWidth: 600,
+    maxWidth: 800,
 
   },
   chips: {
@@ -49,6 +48,15 @@ const MenuProps = {
 };
 
 
+function getStyles(name, that) {
+  return {
+    fontWeight:
+      that.state.name.indexOf(name) === -1
+        ? that.props.theme.typography.fontWeightRegular
+        : that.props.theme.typography.fontWeightMedium,
+  };
+}
+
 class DeveloperList extends React.Component {
   state = {
     developer: [],
@@ -74,10 +82,10 @@ class DeveloperList extends React.Component {
     console.log(developerList)
     return (
       <div className='developerList' >
-      {developerList.length&&
+
       <div className={classes.root}>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="select-multiple-checkbox">Devlopers</InputLabel>
+          <InputLabel htmlFor="select-multiple-checkbox">Developers</InputLabel>
           <Select
             multiple
             value={this.state.developer}
@@ -89,13 +97,13 @@ class DeveloperList extends React.Component {
           {developerList.length && developerList.map((developer )=> (
               <MenuItem key={developer.name} value={developer.name}>
                 <Checkbox checked={this.state.developer.indexOf(developer.name) > -1} />
-                <ListItemText primary={developer.name+'  '+' ::'+' '+developer.email} />
+                <ListItemText primary={developer.name+' '+'::'+' '+developer.email} />
               </MenuItem>
               ))}
           </Select>
         </FormControl>
       </div>
-      }
+     
       </div>
     );
   }
