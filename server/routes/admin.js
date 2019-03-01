@@ -15,6 +15,9 @@ router.post('/add-project', async function(req, res) {
    const buffer = await crypto.randomBytes(20);
    const usertoken = buffer.toString('hex');
    console.log('usertoken'+usertoken)
+   const developer = await User.findOneAndUpdate({ name: body.developer }, {$set: {token:usertoken}}, {upsert: true})
+   console.log(developer)
+  
    if(user){
         let project = await Project.findOne({ title: body.title })
         if(project){
@@ -24,11 +27,11 @@ router.post('/add-project', async function(req, res) {
           }
 
         var mailOptions = {
-                    to: "stiwari@bestpeers.com",
+                    to: developer.email,
                     from: Sender.MAIL_OPTIONS.FROM,
                     subject: MailUtil.project_invitation_mail.subject,
                     body: MailUtil.project_invitation_mail.header+'\n\n' + MailUtil.project_invitation_mail.middle +
-                        'https://' + req.headers.host + '/admin/projects/' + usertoken + '\n\n' +
+                        'http://localhost:3000/#/Developer/' +usertoken+ '\n\n' +
                           MailUtil.project_invitation_mail.footer
                 };
 
@@ -40,6 +43,7 @@ router.post('/add-project', async function(req, res) {
                   discription:body.discription,
                   technology:body.technology,
                   developer:body.developer,
+                  developerEmail:developer.email,
                   date:body.date,
                   createdBy:user,
                   developerToken:usertoken,

@@ -17,11 +17,16 @@ const ProjectSchema = Schema({
             type :String,
             required: true 
             },
-    developer:{
+    developerName:{
                 type :Array,
                 required: true 
             },
-    developerToken:{
+
+            developerEmail:{
+                type :String,
+                required: true 
+            },
+            token:{
                     type :String,
                     required: true 
                 },

@@ -8,7 +8,8 @@ const mapDispatchToProps={
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.auth
+  auth: state.auth,
+  token:state.project.project
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(AdminHome)

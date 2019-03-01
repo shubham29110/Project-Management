@@ -5,16 +5,21 @@ const User = require('../models/User')
 
 
 
-router.post('/accept-invitation',async function (req, res, next) {
-  try {
-        var token = req.body.token
-        let user = await Project.findOne({ token: token })
-        if (user) {
-              newUser.confirmation = true;
-            }
-      } catch (error) {
-            res.send(error)
-          }
+    router.post('/assigned-project',async function (req, res, next) {
+      try {
+            const token = req.body.token
+            console.log(token)
+            const project = await Project.findOneAndUpdate({ token: token },{$set: {confirmation:true}}, {upsert: true})
+            const user = await User.findOne({ token: token })
+            console.log(project+'*******************'+user)
 
-    })
+            if (user&&project) {
+                        res.json(project)
+                        
+                }
+          } catch (error) {
+                res.send(error)
+              }
+    
+        })
 module.exports = router;

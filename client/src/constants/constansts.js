@@ -2,7 +2,7 @@ import React from 'react';
 import AddProject from '../containers/project/addProject'
 import ProjectList from '../containers/project/projectList'
 import TotalDevelopers from '../containers/developer/developer'
-import AssignedProject from '../components/project/AssignedProject'
+import AssignedProject from '../containers/project/assignedProject'
 import Tasks from '../components/project/Tasks'
 
 export const routes =
@@ -36,12 +36,16 @@ export const routes =
                       },  
                       {
                         path: "/Developer",
-                        exact: false,
+                        exact: true,
                         component: AssignedProject
                       }, 
                       {
                         path: "/Tasks",
                         exact: false,
                         component: Tasks
+                      },{
+                        path:'/Developer/:token',
+                        exact: false,
+                        component: AssignedProject
                       }
                     ];

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_ERRORS,ADD_TECHNOLOGY,ADD_PROJECT,ADD_PROJECT_LIST} from './types';
+import { GET_ERRORS,ADD_TECHNOLOGY,ADD_PROJECT,ADD_PROJECT_LIST,ADD_ASSIGNED_PROJECT} from './types';
 
 export const addTechnology = (technology) => async dispatch => {
   debugger
@@ -47,6 +47,24 @@ export const addTechnology = (technology) => async dispatch => {
           if(res){
             dispatch({
               type: ADD_PROJECT_LIST,
+              payload: res.data
+          });
+          }
+      } catch (error) {
+          dispatch({
+              type: GET_ERRORS,
+              payload: error.response.data
+          });
+      }
+  }
+
+  export const fecthAssignedProject = (token) => async dispatch => {
+    debugger
+      try {
+          const res= await axios.post('/assigned-project',token)
+          if(res){
+            dispatch({
+              type: ADD_ASSIGNED_PROJECT,
               payload: res.data
           });
           }

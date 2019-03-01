@@ -1,4 +1,4 @@
-import { ADD_TECHNOLOGY, ADD_PROJECT,ADD_PROJECT_LIST} from '../actions/types';
+import { ADD_TECHNOLOGY, ADD_PROJECT,ADD_PROJECT_LIST,ADD_ASSIGNED_PROJECT} from '../actions/types';
 import isEmpty from '../helper/is-empty';
 
 const initialState = {
@@ -7,7 +7,9 @@ const initialState = {
     projecttAdded: false,
     project: {},
     projectListAdded:false,
-    projectList:{}
+    projectList:{},
+    newProjectAdded:false,
+    newProject:{}
 }
 
 export default function(state = initialState, action ) {
@@ -34,6 +36,14 @@ export default function(state = initialState, action ) {
                     projectListAdded: !isEmpty(action.payload),
                     projectList: action.payload
                 }
+
+                case ADD_ASSIGNED_PROJECT:
+                debugger
+                    return {
+                        ...state,
+                        newProjectAdded: !isEmpty(action.payload),
+                        newProject: action.payload
+                    }
         default: 
             return state;
     }

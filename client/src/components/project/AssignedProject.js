@@ -25,6 +25,7 @@ const styles = theme => ({
 class AssignedProject extends React.Component {
   state = {
     expanded: null,
+   
   };
 
   handleChange = panel => (event, expanded) => {
@@ -33,27 +34,39 @@ class AssignedProject extends React.Component {
     });
   };
 
+  componentWillMount(){
+    if(this.props.match.params.token){
+      const token={
+        token:this.props.match.params.token
+      }
+      this.props.fecthAssignedProject(token)
+    }
+  }
   render() {
-    const { classes } = this.props;
+    debugger
+    const { classes,newProject } = this.props;
     const { expanded } = this.state;
 
     return (
+      
       <div className={classes.root}>
+      {newProject.hasOwnProperty('title') && 
         <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.heading}>Project Name</Typography>
-            <Typography className={classes.secondaryHeading}>Project Technologies</Typography>
-            <Typography style={{    paddingLeft: '30%'}}>Status</Typography>
+            <Typography className={classes.heading}>{newProject.title}</Typography>
+            <Typography className={classes.secondaryHeading}> {newProject.technology+' '}</Typography>
+            <Typography style={{    paddingLeft: '30%'}}>Status:{'  '+newProject.confirmation.toString()}</Typography>
           </ExpansionPanelSummary>
           <Divider />
           <ExpansionPanelDetails>
             <Typography>
-              Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat. Aliquam eget
-              maximus est, id dignissim quam.
+             {newProject.discription}
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
+        }
       </div>
+    
     );
   }
 }

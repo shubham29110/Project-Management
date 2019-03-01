@@ -103,9 +103,9 @@ class AdminHome extends React.Component {
   }
 
   render() {
-    const { classes, theme, auth } = this.props;
+    const { classes, theme, auth ,token} = this.props;
     const { open } = this.state;
-
+if(token)console.log(token)
     return (
        <Router>
       <div className={classes.root}>
