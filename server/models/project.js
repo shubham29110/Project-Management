@@ -22,14 +22,14 @@ const ProjectSchema = Schema({
                 required: true 
             },
 
-            developerEmail:{
+    developerEmail:{
                 type :String,
                 required: true 
-            },
-            token:{
-                    type :String,
-                    required: true 
                 },
+    token:{
+            type :String,
+            required: true 
+            },
     confirmation:{
                     type:Boolean,
                     required: true 

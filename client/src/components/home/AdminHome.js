@@ -176,7 +176,7 @@ if(token)console.log(token)
 
           {auth.user.role=='Developer'&&
           <List>
-            {[  'Developer','Projects', 'Tasks'].map((text, index) => (
+            {[  'Developer','Projects', 'Tasks','OpenTask'].map((text, index) => (
               <Link key={index}to={`/${text}`}>
               <ListItem button key={text}>
                 <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
