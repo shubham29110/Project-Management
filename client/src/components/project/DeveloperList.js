@@ -68,9 +68,6 @@ class DeveloperList extends React.Component {
 
   render() {
     const { classes ,developerList} = this.props;
-    developerList.length &&developerList.map((developer )=> {
-      console.log('developer',developer)
-    })
     console.log(developerList)
     return (
       <div className='developerList' >

@@ -8,6 +8,7 @@ const users = require('./routes/authentication');
 const admin = require('./routes/admin'); 
 const developer = require('./routes/developer'); 
 
+
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
     () => {console.log('Database is connected') },
     err => { console.log('Can not connect to the database'+ err)}
