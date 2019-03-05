@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import io from "socket.io-client";
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -30,22 +31,54 @@ class OpenTask extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    
+      username:'',
       title: '',
-        errors: {}
+      dicription: '',
+      errors:{}
+     
     }
+    this.socket = io('localhost:5000');
+    this.socket.on('RECEIVE_TITLE', function(data){
+      debugger
+      addTitle(data);
+  });
+
+  const addTitle = data => {
+    debugger
+    console.log('data'+data.title);
+    this.setState({title:  data.title});
+    this.setState({title: ''});
+    console.log('tite'+this.state.title);
+};
+
+this.sendTitle = ev => {
+  debugger
+  ev.preventDefault();
+  this.socket.emit('SEND_TITLE', {
+      author: this.state.username,
+      title: this.state.title
+  })
+  this.setState({title: ''});
+
 }
+}
+
+
+ 
+  
   render (){
     const { errors,title } = this.state;
     const { classes } = this.props;
 
+
     return (
+
+      
       <Card className={classes.card}>
         <CardContent>
-
           <TextField
           name="title"
-          label=""
+          label="title"
           style={{ margin: 8 }}
           placeholder="Enter Title for Task"
           value={title}
@@ -53,16 +86,20 @@ class OpenTask extends Component {
           fullWidth
           margin="normal"
           variant="outlined"
-          className={classnames( {'is-invalid': errors.discription })}
+          className={classnames( {'is-invalid': errors.title })}
           multiline={true}
           rows={4}
           rowsMax={8}
+          onChange={e => this.setState({title: e.target.value})}
           InputLabelProps={{shrink: true,}}
         />
         < TaskDialog />
         </CardContent>
         <CardActions>
-          <Button size="small">Learn More</Button>
+          <Button 
+            size="small"
+            onClick={this.sendTitle}
+            >OK</Button>
         </CardActions>
   
       </Card>
