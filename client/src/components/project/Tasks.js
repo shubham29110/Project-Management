@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import OpenTask from '../project/OpenTask'
 
 // fake data generator
 const getItems = (count, offset = 0) =>
@@ -57,7 +58,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 const getListStyle = isDraggingOver => ({
     background: isDraggingOver ? 'lightblue' : 'lightgrey',
     padding: grid,
-    width: 250
+    width: 325
 });
 
 class Tasks extends Component {
@@ -119,6 +120,7 @@ class Tasks extends Component {
     // Normally you would want to split things out into separate components.
     // But in this example everything is just done in one place for simplicity
     render() {
+        debugger
         return (
 					<div style={{display:'inline-flex'}}>
             <DragDropContext onDragEnd={this.onDragEnd}>
@@ -141,8 +143,7 @@ class Tasks extends Component {
                                                 snapshot.isDragging,
                                                 provided.draggableProps.style
                                             )}>
-                                            {item.content}
-                                        </div>
+                                            <OpenTask />                                        </div>
                                     )}
                                 </Draggable>
                             ))}
@@ -169,7 +170,7 @@ class Tasks extends Component {
                                                 snapshot.isDragging,
                                                 provided.draggableProps.style
                                             )}>
-                                            {item.content}
+                                            <OpenTask />  
                                         </div>
                                     )}
                                 </Draggable>

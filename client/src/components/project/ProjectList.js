@@ -6,6 +6,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { HashRouter as Router } from "react-router-dom";
 const styles = theme => ({
   root: {
     width: '100%',
@@ -18,7 +19,21 @@ const styles = theme => ({
 });
 
  
-class ProjectList extends React.Component { 
+class ProjectList extends React.Component {
+
+  handleClick=(list)=>{
+    debugger
+  if(list.title){
+  const project={
+    projectName:list.title,
+    developerName:list.developer,
+    developerEmail:list.developerEmail
+  }
+  console.log(project)
+  this.props.addTaskToProject(project)
+}
+}
+  
   componentDidMount(){
     if(this.props){
       this.props.fecthProjectList()
@@ -31,6 +46,7 @@ class ProjectList extends React.Component {
   
 
     return(
+      <Router>
    <Paper className={classes.root}>
   
       <Table className={classes.table}>
@@ -43,24 +59,31 @@ class ProjectList extends React.Component {
             <TableCell align="right">Confirmation</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        
+        <TableBody >
+       
         {projectList.length && projectList.map((list)=>(
-            <TableRow key={list.id}>
-              <TableCell component="th" scope="row">
+          
+          
+            <TableRow component="a" href='/#/OpenTask' onClick={() => this.handleClick(list)} key={list.id}>
+              <TableCell name="projectName"component="th" scope="row">
                 {list.title}
               </TableCell>
               <TableCell align="right">{list.date}</TableCell>
-              <TableCell align="right"
-               renderValue={selected => selected.join(', ')}>
-                {list.technology+'\n'}</TableCell>
-              <TableCell align="right">{list.developer+'\n'}</TableCell>
+              <TableCell align="right">{list.technology+'\n'}</TableCell>
+              <TableCell name="projectName" align="right">{list.developer+'\n'}</TableCell>
               <TableCell align="right">{list.confirmation.toString()}</TableCell>
             </TableRow>
+           
+            
             ))}
+          
         </TableBody>
+       
       </Table>
    
     </Paper>
+    </Router>
   )
 }
 }

@@ -4,7 +4,7 @@ import ProjectList from '../containers/project/projectList'
 import TotalDevelopers from '../containers/developer/developer'
 import AssignedProject from '../containers/project/assignedProject'
 import Tasks from '../components/project/Tasks'
-import OpenTask from '../components/project/OpenTask'
+import addTask from '../containers/project/task/addTask'
 
 export const routes =
                     [
@@ -48,7 +48,7 @@ export const routes =
                       {
                         path:'/OpenTask',
                         exact: false,
-                        component: OpenTask
+                        component: addTask
                       },
                       {
                         path:'/Developer/:token',

@@ -29,39 +29,41 @@ const styles = {
 
 class OpenTask extends Component {
   constructor(props) {
-    super(props);
-    this.state = {
-      username:'',
-      title: '',
-      dicription: '',
-      errors:{}
-     
-    }
-    this.socket = io('localhost:5000');
-    this.socket.on('RECEIVE_TITLE', function(data){
-      debugger
-      addTitle(data);
-  });
+                        super(props);
+                        this.state = {
+                          username:'',
+                          title: '',
+                          dicription: '',
+                          errors:{}
+                        
+                        }
+                        this.socket = io('localhost:5000',{
+                                      path: '/task'
+                                    });
+                        this.socket.on('RECEIVE_TITLE', function(data){
+                                        debugger
+                                        addTitle(data);
+                                    });
 
-  const addTitle = data => {
-    debugger
-    console.log('data'+data.title);
-    this.setState({title:  data.title});
-    this.setState({title: ''});
-    console.log('tite'+this.state.title);
-};
+                        const addTitle = data => {
+                                                  debugger
+                                                  console.log('data'+data.title);
+                                                  this.setState({title:  data.title});
+                                                  this.setState({title: ''});
+                                                  console.log('tite'+this.state.title);
+                                              };
 
-this.sendTitle = ev => {
-  debugger
-  ev.preventDefault();
-  this.socket.emit('SEND_TITLE', {
-      author: this.state.username,
-      title: this.state.title
-  })
-  this.setState({title: ''});
+                        this.sendTitle = ev => {
+                                                debugger
+                                                ev.preventDefault();
+                                                this.socket.emit('SEND_TITLE', {
+                                                    author: this.state.username,
+                                                    title: this.state.title
+                                                })
+                                                this.setState({title: ''});
 
-}
-}
+                                              }
+                      }
 
 
  

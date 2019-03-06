@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
-import {fecthProjectList} from '../../actions/project'
+import {fecthProjectList,addTaskToProject} from '../../actions/project'
 import ProjectList from '../../components/project/ProjectList'
 
 const mapDispatchToProps={
-  fecthProjectList
+  fecthProjectList,
+  addTaskToProject
 }
 const mapStateToProps = (state) => ({
   errors: state.errors,

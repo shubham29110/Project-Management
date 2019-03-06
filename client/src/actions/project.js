@@ -75,3 +75,21 @@ export const addTechnology = (technology) => async dispatch => {
           });
       }
   }
+
+
+  export const addTaskToProject = (project) => async dispatch => {
+    debugger
+      try {
+            dispatch({
+              type: ADD_PROJECT,
+              payload: project
+          });
+          
+          
+      } catch (error) {
+          dispatch({
+              type: GET_ERRORS,
+              payload: error.response.data
+          });
+      }
+  }
