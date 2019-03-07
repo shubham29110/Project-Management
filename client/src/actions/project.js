@@ -77,15 +77,16 @@ export const addTechnology = (technology) => async dispatch => {
   }
 
 
-  export const addTaskToProject = (project) => async dispatch => {
+  export const addTaskToProject = (project,history) => async dispatch => {
     debugger
       try {
-            dispatch({
-              type: ADD_PROJECT,
-              payload: project
-          });
-          
-          
+        const res= await axios.post('/admin/project-data', project)
+        if(res){
+          dispatch({
+            type: ADD_PROJECT,
+            payload: res.data
+        });
+        }
       } catch (error) {
           dispatch({
               type: GET_ERRORS,

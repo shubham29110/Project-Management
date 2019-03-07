@@ -45,11 +45,16 @@ class AddTask extends React.Component {
   handleClose = (e) => {
     debugger
     e.preventDefault();
-    if(this.state.title){
+    if(this.state.title &&this.props.project){
       const user = {
           title: this.state.title,
+          projectTitle :this.props.project[0].title,
+          developerEmail:this.props.project[0].developerEmail,
+          developerName:this.props.project[0].developerName,
+          date:new Date().toLocaleString(),
       }
       console.log("user",user)
+      this.props.addTask(user)
 }
 this.setState({ open: false });
 }
@@ -70,29 +75,28 @@ if(this.props.project) console.log(auth.user.id,'+++++',project)
   
       <Grid item xs={12}  onClick={this.handleClickOpen}>
       <TextField
-          name="title"
-          label="title for task"
+      
+          label="Enter title"
           style={{ margin: 8,width:900 }}
-          placeholder="Enter Title for Task"
-          value={title}
           helperText="Please provide title detail about task!"
           margin="normal"
+          defaultValue="Enter Title for Task"
           variant="outlined"
-          className={classnames( {'is-invalid': errors.title })}
+          className={classes.textField}
           multiline={true}
           rows={4}
           rowsMax={8}
-          onChange={this.handleChange}
-          InputLabelProps={{shrink: true,}}
+          InputProps={{readOnly: true,}}
         />
       </Grid>
-      {project.hasOwnProperty('projectName')&&
+      {project.length && project.map((project,i)=>(
         <Dialog classes={{ paper: classes.dialogPaper }}
+          key={i}
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-        <DialogTitle id="form-dialog-title">{project.projectName}</DialogTitle>
+        <DialogTitle id="form-dialog-title">{project.title}</DialogTitle>
           <DialogContent>
           <TextField
           name="title"
@@ -123,7 +127,7 @@ if(this.props.project) console.log(auth.user.id,'+++++',project)
             </Button>
           </DialogActions>
         </Dialog>
-      }
+        ))}
       </div>
     );
   }

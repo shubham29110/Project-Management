@@ -4,12 +4,11 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const config = require('./db');
 const app = express();
-module.exports= app
 var socket = require('socket.io');
 const users = require('./routes/authentication'); 
 const admin = require('./routes/admin'); 
 const developer = require('./routes/developer'); 
-var cors = require('cors')
+const project = require('./routes/project'); 
 
 
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
@@ -23,11 +22,11 @@ require('./passport')(passport);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors())
 
 app.use('/api/users', users);
 app.use('/admin', admin);
-//app.use('/',developer)
+app.use('/',developer)
+app.use('/',project)
 
 
 const PORT = process.env.PORT || 5000;
@@ -35,8 +34,8 @@ const PORT = process.env.PORT || 5000;
 const server=app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`);
 });
-io = socket(server)
- app.set("io", io);
+// io = socket(server)
+//  app.set("io", io);
 // io.on('connection', (socket) => {
 //     console.log(socket.id);
 
@@ -45,6 +44,3 @@ io = socket(server)
 //         console.log('data',data)
 //     })
 // });
-
-
-app.use('/',developer)

@@ -46,7 +46,7 @@ router.post('/add-project', async function(req, res) {
                   developerEmail:developer.email,
                   date:body.date,
                   createdBy:user,
-                  developerToken:usertoken,
+                  token:usertoken,
                   confirmation:false
               })
             let project_data = await newProject.save();
@@ -101,4 +101,19 @@ router.get('/developer-list',async function(req, res) {
             throw error;
         }
     })
+
+
+    router.post('/project-data',async function(req, res) {
+        try {
+            const body=req.body
+            const projectData =await Project.find({title:body.projectName})
+            if(projectData){
+                res.json(projectData) 
+                }
+          } catch (error) {
+                  console.log(error);
+                  throw error;
+              }
+          })
+    
 module.exports = router;

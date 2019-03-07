@@ -30,7 +30,7 @@ class ProjectList extends React.Component {
     developerEmail:list.developerEmail
   }
   console.log(project)
-  this.props.addTaskToProject(project)
+  this.props.addTaskToProject(project,this.props.history)
 }
 }
   
@@ -62,10 +62,10 @@ class ProjectList extends React.Component {
         
         <TableBody >
        
-        {projectList.length && projectList.map((list)=>(
+        {projectList.length && projectList.map((list ,i)=>(
           
           
-            <TableRow component="a" href='/#/OpenTask' onClick={() => this.handleClick(list)} key={list.id}>
+            <TableRow key={i} component="a" href='/#/OpenTask' onClick={() => this.handleClick(list)} key={list.id}>
               <TableCell name="projectName"component="th" scope="row">
                 {list.title}
               </TableCell>

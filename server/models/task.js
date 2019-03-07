@@ -15,12 +15,12 @@ const TaskSchema = Schema({
         },
         developerName:{
                             type :Array,
-                            required: true 
+                            
         },
 
         developerEmail:{
                             type :String,
-                            required: true 
+                            
         },
 
         project: [{
@@ -30,5 +30,5 @@ const TaskSchema = Schema({
         }]
 });
 
-const Task = mongoose.model('task', ProjectSchema);
+const Task = mongoose.model('task', TaskSchema);
 module.exports = Task;
